@@ -1,13 +1,17 @@
 from django.db import models
 from config.g_model import TimeStampMixin
+from django.db.models import CharField
 
 
 # Create your models here.
 class Variant(TimeStampMixin):
-    title = models.CharField(max_length=40, unique=True)
+    title: CharField = models.CharField(max_length=40, unique=True)
     description = models.TextField()
     active = models.BooleanField(default=True)
-
+    def __str__(self):
+            return self.title
+    def __unicode__(self):
+            return self.title
 
 class Product(TimeStampMixin):
     title = models.CharField(max_length=255)
